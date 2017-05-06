@@ -43,6 +43,9 @@
 
         this.score=0;
         this.scoreText='';
+        
+        this.bonus=0;
+	    this.bonusText='';
     };
 
     Pacman.prototype = {
@@ -67,6 +70,7 @@
             this.load.crossOrigin = 'anonymous';
 
             this.load.image('crystal2', 'assets/crystal2.png');
+            this.load.image('sword2', 'assets/sword2.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('jedi-walk', 'assets/jedi-walk.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map2.json', null, Phaser.Tilemap.TILED_JSON);
@@ -83,6 +87,8 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.dots = this.add.physicsGroup();
+            
+             this.map.createFromTiles(36, this.safetile, 'sword2', this.layer, this.dots);
 
             this.map.createFromTiles(7, this.safetile, 'crystal2', this.layer, this.dots);
 
@@ -106,7 +112,10 @@
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
             
-            this.scoreText = game.add.text(320, 500, 'Score: 0', { fontSize: '32px Tahoma', fill: 'white' });
+            this.scoreText = game.add.text(320, 500, 'Score: 0', { fontSize: '30px Tahoma', fill: 'white' });
+            this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '25px Tahoma', fill: 'white' });
+            
+            var sprite = game.add.sprite(417, 465, 'sword2');
 
         },
 
@@ -238,11 +247,24 @@
             }
 
         },
+        
+        eatSword: function(pacman,sword2){
+            sword2.kill();
+	    this.bonus+=100;//anebasma score
+            this.bonusText.text= 'Bonus: ' + this.bonus;
+	  /*  var audio = new Audio('assets/pacman_eatfruit.wav');
+            audio.play()} */
+            /*if(this.strs.total===0)
+            {
+                this.strs.callAll('revive');
+            }*/
+        },
 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
+            this.physics.arcade.overlap(this.pacman, this.dots, this.eatSword, null, this);
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
