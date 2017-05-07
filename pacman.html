@@ -88,8 +88,9 @@
             this.layer = this.map.createLayer('Pacman');
 
             this.dots = this.add.physicsGroup();
+	    this.swords = this.add.physicsGroup();
             
-             this.map.createFromTiles(36, this.safetile, 'sword2', this.layer, this.dots);
+            this.map.createFromTiles(35, this.safetile, 'sword2', this.layer, this.swords);
 
             this.map.createFromTiles(7, this.safetile, 'crystal2', this.layer, this.dots);
 
@@ -97,6 +98,9 @@
             this.dots.setAll('x', 6, false, false, 1);
             this.dots.setAll('y', 6, false, false, 1);
 
+	    this.swords.setAll('x', 6, false, false, 1);
+            this.swords.setAll('y', 6, false, false, 1);
+		
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
 
@@ -117,6 +121,9 @@
             this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '15px Tahoma', fill: 'white' });
             
             var sprite = game.add.sprite(417, 465, 'sword2');
+		
+	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);
+		
             lives = game.add.group();
             game.add.text(game.world.width - 370, 500, 'Lives: ', { fontSize: '15px Tahoma', fill: 'white' });
 		
@@ -274,7 +281,7 @@
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
-            this.physics.arcade.overlap(this.pacman, this.dots, this.eatSword, null, this);
+            this.physics.arcade.overlap(this.pacman, this.swords, this.eatSword, null, this);
 
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
