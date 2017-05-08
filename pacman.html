@@ -119,8 +119,8 @@
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
             
-            this.scoreText = game.add.text(320, 500, 'Score: 0', { fontSize: '15px Tahoma', fill: 'white' });
-            this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '15px Tahoma', fill: 'white' });
+            this.scoreText = game.add.text(320, 500, 'Score: 0', { fontSize: '15px Tahoma', fill: '#00b7e5' });
+            this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '15px Tahoma', fill: 'yellow' });
             
             var sprite = game.add.sprite(417, 465, 'sword2');
 		
@@ -269,14 +269,10 @@
         
         eatSword: function(pacman,sword2){
             sword2.kill();
-	    this.bonus+=100;//anebasma score
+	    this.bonus+=10;//anebasma score
             this.bonusText.text= 'Bonus: ' + this.bonus;
 	  /*  var audio = new Audio('assets/pacman_eatfruit.wav');
             audio.play()} */
-            /*if(this.strs.total===0)
-            {
-                this.strs.callAll('revive');
-            }*/
         },
 
         update: function () {
