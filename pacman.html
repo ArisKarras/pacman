@@ -271,8 +271,10 @@
             sword2.kill();
 	    this.bonus+=10;//anebasma score
             this.bonusText.text= 'Bonus: ' + this.bonus;
-	  /*  var audio = new Audio('assets/pacman_eatfruit.wav');
-            audio.play()} */
+	    this.score+=10;
+	    this.scoreText.text= 'Score: ' + this.score;
+	    var audio = new Audio('assets/Blasters (mp3cut.net).mp3');
+            audio.play()
         },
 
         update: function () {
