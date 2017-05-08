@@ -72,6 +72,7 @@
             this.load.crossOrigin = 'anonymous';
 
             this.load.image('crystal2', 'assets/crystal2.png');
+	    this.load.image('cross', 'assets/cross.jpg');
             this.load.image('sword2', 'assets/sword2.png');
 	    this.load.image('lifes', 'assets/lifes.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
@@ -122,7 +123,7 @@
             this.scoreText = game.add.text(300, 500, 'Score: 0', { fontSize: '15px Tahoma', fill: 'yellow' });
             this.bonusText = game.add.text(0, 500, 'Bonus: 0', { fontSize: '15px Tahoma', fill: 'yellow' });
             
-            var sprite = game.add.sprite(417, 465, 'sword2');
+            var sprite = game.add.sprite(417, 465, 'cross');
 		
 	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);
 		
