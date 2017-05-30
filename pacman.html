@@ -128,11 +128,11 @@
 	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);
 		
             lives = game.add.group();
-            game.add.text(game.world.width - 310, 500, 'Lives: ', { fontSize: '15px Tahoma', fill: 'red' });
+            game.add.text(game.world.width - 320, 500, 'Lives: ', { fontSize: '15px Tahoma', fill: 'red' });
 		
             for (var i = 0; i < 3; i++) 
 		    {
-			var pacman = lives.create(game.world.width - 210 + (30 * i), 517, 'lifes');
+			var pacman = lives.create(game.world.width - 220 + (30 * i), 517, 'lifes');
 			pacman.anchor.setTo(0.5, 0.5);
 			pacman.angle = 90;
 			pacman.alpha = 0.4;
